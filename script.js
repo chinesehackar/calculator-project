@@ -47,9 +47,11 @@ function populateDisplay(e) {
             readyClear = true;
         }
     }
-
     if (e.target.matches(".all-clear")) {
         clear();
+    }
+    if (e.target.matches(".del")) {
+        display.textContent = (display.textContent).substring(0, display.textContent.length - 1)
     }
 }
 
