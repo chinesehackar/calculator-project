@@ -34,34 +34,7 @@ function typeDisplay(e) {
         readyClear = false;
     }
     if (e.key === "Enter") {
-        if (isNaN(parseFloat(display.textContent))) return;
-
-        if (!firstNum && !operator) { //no vars at all
-            firstNum = parseFloat(display.textContent);
-            display.textContent = firstNum
-            readyClear = true;
-        } else if (firstNum && operator && !display.textContent) { //first num and operator present
-            display.textContent = firstNum;
-            operator = "";
-            readyClear = true;
-        } else {
-            secondNum = parseFloat(display.textContent);
-            operate(firstNum, operator, secondNum);
-            if (isFinite(result)) {
-                display.textContent = Math.round(result * 1000000) / 1000000;
-                if (display.textContent.length > 12) {
-                    display.textContent = "Operation too large!"
-                    firstNum = null
-                } else {
-                    firstNum = parseFloat(display.textContent)
-                }
-            } else {
-                display.textContent = "Math Error";
-                firstNum = 0;
-            }
-            operator = "";
-            readyClear = true;
-        }
+        enter();
     }
     if (e.key === "Backspace") {
         display.textContent = (display.textContent).substring(0, display.textContent.length - 1)
@@ -93,34 +66,7 @@ function populateDisplay(e) {
         readyClear = false;
     }
     if (e.target.matches(".equals")) {
-        if (isNaN(parseFloat(display.textContent))) return;
-
-        if (!firstNum && !operator) { //no vars at all
-            firstNum = parseFloat(display.textContent);
-            display.textContent = firstNum
-            readyClear = true;
-        } else if (firstNum && operator && !display.textContent) { //first num and operator present
-            display.textContent = firstNum;
-            operator = "";
-            readyClear = true;
-        } else {
-            secondNum = parseFloat(display.textContent);
-            operate(firstNum, operator, secondNum);
-            if (isFinite(result)) {
-                display.textContent = Math.round(result * 1000000) / 1000000;
-                if (display.textContent.length > 12) {
-                    display.textContent = "Operation too large!"
-                    firstNum = null
-                } else {
-                    firstNum = parseFloat(display.textContent)
-                }
-            } else {
-                display.textContent = "Math Error";
-                firstNum = 0;
-            }
-            operator = "";
-            readyClear = true;
-        }
+        enter();
     }
     if (e.target.matches(".all-clear")) {
         clear();
@@ -136,6 +82,37 @@ function clear() {
     operator = "";
     result = null;
     display.textContent = "";
+}
+
+function enter() {
+    if (isNaN(parseFloat(display.textContent))) return;
+
+    if (!firstNum && !operator) { //no vars at all
+        firstNum = parseFloat(display.textContent);
+        display.textContent = firstNum
+        readyClear = true;
+    } else if (firstNum && operator && !display.textContent) { //first num and operator present
+        display.textContent = firstNum;
+        operator = "";
+        readyClear = true;
+    } else {
+        secondNum = parseFloat(display.textContent);
+        operate(firstNum, operator, secondNum);
+        if (isFinite(result)) {
+            display.textContent = Math.round(result * 1000000) / 1000000;
+            if (display.textContent.length > 12) {
+                display.textContent = "Operation too large!"
+                firstNum = null
+            } else {
+                firstNum = parseFloat(display.textContent)
+            }
+        } else {
+            display.textContent = "Math Error";
+            firstNum = 0;
+        }
+        operator = "";
+        readyClear = true;
+    }
 }
 
 function operate(num1, operator, num2) {
