@@ -9,12 +9,16 @@ const interface = document.querySelector(".interface");
 interface.addEventListener("click", populateDisplay);
 
 function populateDisplay(e) {
-    if (e.target.matches(".digit")) {
+    if (e.target.matches(".digit") && display.textContent.length < 12 ) {
         if (readyClear) {
             clear();
             readyClear = false;
         }
         display.textContent += e.target.textContent
+    }
+    if (e.target.matches(".decimal") && display.textContent && !display.textContent.includes(".")) {
+        readyClear = false;
+        display.textContent += e.target.textContent;
     }
     if (e.target.matches(".operator")) {
         if (operator === "") {
@@ -38,6 +42,9 @@ function populateDisplay(e) {
             operate(firstNum, operator, secondNum);
             if (isFinite(result)) {
                 display.textContent = Math.round(result * 1000000) / 1000000;
+                if (display.textContent.length > 12) {
+                    display.textContent = "Operation too large!"
+                }
                 firstNum = parseFloat(display.textContent);
             } else {
                 display.textContent = "Math Error";
