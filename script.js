@@ -6,7 +6,7 @@ let readyClear = false;
 
 const display = document.querySelector(".display");
 const interface = document.querySelector(".interface");
-interface.addEventListener("click", populateDisplay)
+interface.addEventListener("click", populateDisplay);
 
 function populateDisplay(e) {
     if (e.target.matches(".digit")) {
@@ -28,14 +28,21 @@ function populateDisplay(e) {
         if (!firstNum && !operator) { //no vars at all
             firstNum = parseFloat(display.textContent);
             display.textContent = firstNum
+            readyClear = true;
         } else if (firstNum && operator && !display.textContent) { //first num and operator present
             display.textContent = firstNum;
             operator = "";
+            readyClear = true;
         } else {
             secondNum = parseFloat(display.textContent);
-            operate(firstNum, operator, secondNum)
-            display.textContent = Math.round(result * 1000000) / 1000000;
-            firstNum = parseFloat(display.textContent);
+            operate(firstNum, operator, secondNum);
+            if (isFinite(result)) {
+                display.textContent = Math.round(result * 1000000) / 1000000;
+                firstNum = parseFloat(display.textContent);
+            } else {
+                display.textContent = "Math Error";
+                firstNum = 0;
+            }
             operator = "";
             readyClear = true;
         }
