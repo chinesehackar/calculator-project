@@ -1,0 +1,74 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 24px;
+}
+
+.calculator {
+    border-radius: 16px;
+    padding: 28px;
+    width: 400px;
+    height: 700px;
+    margin: auto;
+    background-color: #272727;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.display {
+    flex: 1;
+    background-color: #d2d1cf;
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    font-size: 32px;
+}
+
+.interface {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.clear {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.row div, .clear div {
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.row div {
+    background-color: #717171;
+}
+
+.clear div {
+    background-color: #a1a1a1;
+}
+
+div.operator {
+    background-color: #ff9523;
+}
