@@ -70,7 +70,7 @@ body {
     background-color: #a1a1a1;
 }
 
-div.operator {
+div.operator, div.equals {
     background-color: #ff9523;
 }
 
